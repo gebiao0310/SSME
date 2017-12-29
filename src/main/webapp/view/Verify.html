@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Verify.html</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+ 	<link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.easyui.min.js"></script>
+  </head>
+  <script type="text/javascript">
+  		$.extend($.fn.validatebox.defaults.rules, {    
+		    equals: {    
+		        validator: function(value,param){    
+		            return value == $(param[0]).val();    
+		        },
+		        message: '两次输入密码不一致'   
+		    }    
+		}); 
+  </script>
+  <body>
+     <div class="easyui-panel" style="width:100%;border: 50px">
+		<table cellpadding="10">
+			<tr>
+				<td>用户名:</td>
+				<td><input class="easyui-validatebox textbox" data-options="missingMessage:'用户名为3—10位的字符',invalidMessage:'用户名为3—10位的字符',prompt:'Enter User Name.',required:true,validType:'length[3,10]'"></td>
+			</tr>
+			<tr>
+				<td>用户密码:</td>
+				<td><input id="pwd" name="pwd" type="password" class="easyui-validatebox textbox" data-options="missingMessage:'用户密码为6—12位字符',invalidMessage:'用户密码为6—12位字符',required:true,validType:'length[6,12]'" /></td>
+			</tr>
+			<tr>
+				<td>确认密码:</td>
+				<td><input id="rpwd" name="rpwd" type="password" class="easyui-validatebox textbox"required="required" validType="equals['#pwd']" data-options="missingMessage:'密码必须一致'"/></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input class="easyui-validatebox textbox" data-options="missingMessage:'eg: 18394795206@163.com',invalidMessage:'错误格式',required:true,validType:'email'"></td>
+			</tr>
+			<tr>
+				<td>日期:</td>
+				<td><input class="easyui-datebox" data-options="editable:false"></td>
+			</tr>
+			<tr>
+				<td>URL:</td>
+				<td><input class="easyui-validatebox textbox" data-options="missingMessage:'eg: www.baidu.com',invalidMessage:'错误格式',required:true,validType:'url'"></td>
+			</tr>
+			<tr>
+				<td>Phone:</td>
+				<td><input class="easyui-numberbox" data-options="missingMessage:'电话号码为11位数字',invalidMessage:'电话号码为11位数字',prompt:'1390000000',required:true,validType:'length[11,11]'"></td>
+			</tr>
+		</table>
+	</div>
+  </body>
+</html>

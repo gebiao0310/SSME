@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Layout.html</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="themes/icon.css">
+<link rel="stylesheet" type="text/css" href="demo.css">
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.easyui.min.js"></script>
+</head>
+<style type="text/css">
+	html {
+		height: 100%
+	}
+	body {
+		font-size: 14px;
+		width: 100%;
+		height: 100%;
+		margin: 1px;
+	}
+</style>
+<script type="text/javascript">
+	function urlClick(MyTab, MyUrl) {
+		//判断是否存在
+		var myEcxists = $('#tab').tabs('exists', MyTab);
+		if (!myEcxists) {
+			$('#tab').tabs('add',{
+				title : MyTab,
+				content:'<iframe frameborder="0" width="100%" height="100%" scrolling="no" src="'+ MyUrl + '"></iframe>',closable : true,
+			});
+		} else {
+			$('#tab').tabs('select', MyTab);
+		}
+	}
+</script>
+<body>
+	<div class="easyui-layout" style="width:100%;height:100%; border: 50px">
+		<!-- 头部  北 -->
+		<div data-options="region:'north'" style="height:20%">
+			<img width="100%" height="98%" src="img.jpg">
+		</div>
+		<!-- 菜单  西-->
+		<div data-options="region:'west',split:true" title="West" style="width:20%;">
+			<div class="easyui-accordion" data-options="fit:true" style="width:100%;height:100%;">
+				<div title="权限管理" data-options="iconCls:'icon-lock'" style="padding:20px;padding-top: 10px">
+						<a href="javascript:urlClick('Tree树','Tree.html')" style="text-decoration:none">Tree树</a>
+					<br/><p>
+						<a href="javascript:urlClick('EasyUi验证','Verify.html')" style="text-decoration:none">EasyUi验证</a>
+					<br /><p>
+						<a href="javascript:urlClick('食品管理','EasyUi.html')" style="text-decoration:none">食品管理</a>
+					<br /><p>
+				</div>
+				<div title="系统设置" data-options="iconCls:'icon-lock'" style="padding:20px;padding-top: 10px">
+				</div>
+			</div>
+		</div>
+		<!-- 中部主城   内容 --> 
+		<div data-options="region:'center'">
+			<div id="tab" class="easyui-tabs" data-options="fit:true" style="width:100%;height:100%">
+				<div title="欢迎使用" style="padding:10px">
+					<table class="easyui-datagrid" data-options="url:'datagrid_data1.json',method:'get',border:false,singleSelect:true,fit:true,fitColumns:true">
+						<thead>
+							<img width="100%" height="100%" src="timg.jpg">
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

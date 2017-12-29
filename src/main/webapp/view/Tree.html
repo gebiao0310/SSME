@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Treehtml</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="themes/icon.css">
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.easyui.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<style type="text/css">
+			html {
+			height: 100%
+		}
+		body {
+			font-size: 14px;
+			width: 100%;
+			height: 100%;
+			margin: 1px;
+		}
+	</style>
+	<script type="text/javascript">
+		$(function(){
+			$("#tt").tree({
+				onSelect:function(node){
+					var id=node.id;
+					$("#dg").datagrid("load",{
+						id:id
+					});
+				}
+			});
+		});
+	</script>
+  </head>
+  <body>
+   	 <div class="easyui-layout" style="width:100%;height:100%;border: 0px">
+		<div data-options="region:'west'" style="width:15%;">
+			<ul id="tt" class="easyui-tree" data-options="url:'../queryDept'"></ul>
+		</div>
+		<div data-options="region:'center',iconCls:'icon-ok'">
+			<table id="dg" class="easyui-datagrid" style="width:100%;height:100%"
+					data-options="singleSelect:true,collapsible:true,url:'../queryEmp',method:'get'">
+				<thead>
+					<tr>
+						<th data-options="field:'id',width:100">员工编号</th>
+						<th data-options="field:'ename',width:100">员工姓名</th>
+						<th data-options="field:'sal',width:80,align:'right'">薪水</th>
+						<th data-options="field:'deptid',width:100,align:'right'">部门编号</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+  </body>
+</html>
